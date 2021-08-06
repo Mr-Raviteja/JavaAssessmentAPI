@@ -11,9 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
     @Autowired
     IEmployeeService iEmployeeService;
+
 
     @RequestMapping(value = "/employees", method = RequestMethod.POST)
     public ResponseEntity<EmployeeDetailsEntity> createOrUpdateEmp(@RequestBody EmployeeDetailsEntity employeeDetailsEntity) {
@@ -25,6 +27,7 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDetailsEntity> createOrUpdateEmp(@RequestBody EmployeeDetailsEntity employeeDetailsEntity, @PathVariable Long empId) throws Exception {
         return ResponseEntity.ok().body(iEmployeeService.updateEmployeeDetailsEntity(employeeDetailsEntity));
     }
+
 
     @RequestMapping(value = "/employees/{empId}", method = RequestMethod.GET)
     public ResponseEntity<EmployeeDetailsEntity> getEmployeeById(@PathVariable Long empId) throws Exception {
@@ -44,5 +47,24 @@ public class EmployeeController {
         return ResponseEntity.ok().body(iEmployeeService.getAllEmployeeDetailsEntity());
     }
 
+    @RequestMapping(value = "/employees/hello", method = RequestMethod.GET)
+    public ResponseEntity<String> getWelcomPage() throws Exception {
+
+        return ResponseEntity.ok().body("Welcome To Grab a bite");
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Boolean authGaurd() throws Exception {
+
+        return true;
+    }
+    /*@RequestMapping(value = "/login", method = RequestMethod.POST)
+    @CrossOrigin(origins = "*")
+    public Boolean authGaurd(@RequestParam("email") String email,@RequestParam("password") String password) throws Exception {
+       if ("admin".equals(email) && "admin".equals(password))
+            return true;
+        else
+          return false;
+    }*/
 
 }

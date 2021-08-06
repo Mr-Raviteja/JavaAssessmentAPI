@@ -14,26 +14,29 @@ public class EmployeeDetailsEntity {
     private String firstName;
     @Column(name = "LastName")
     private String lastName;
-    @Column(name = "Mobile")
+    @Column(name = "Mobile", nullable = true)
     private String mobile;
     @Column(name = "Email")
     private String emailAddress;
-    @Column(name = "PostCode")
+    @Column(name = "Password")
+    private String password;
+    @Column(name = "PostCode", nullable = true)
     private String postCode;
-    @Column(name = "City")
+    @Column(name = "City", nullable = true)
     private String city;
-    @Column(name = "Country")
+    @Column(name = "Country", nullable = true)
     private String country;
 
     public EmployeeDetailsEntity() {
     }
 
-    public EmployeeDetailsEntity(String firstName, String lastName, String mobile, String emailAddress, String postCode, String city, String country) {
+    public EmployeeDetailsEntity(String firstName, String lastName, String mobile, String emailAddress, String password, String postCode, String city, String country) {
         this.empId = empId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobile = mobile;
         this.emailAddress = emailAddress;
+        this.password = password;
         this.postCode = postCode;
         this.city = city;
         this.country = country;
@@ -83,6 +86,14 @@ public class EmployeeDetailsEntity {
         this.emailAddress = emailAddress;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPostCode() {
         return postCode;
     }
@@ -116,6 +127,7 @@ public class EmployeeDetailsEntity {
                 ", lastName='" + lastName + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
+                ", password='" + password + '\'' +
                 ", postCode='" + postCode + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
